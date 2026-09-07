@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import CountdownTimer from "./UI/CountdownTimer";
 
 
 const getSlidesToShow = () => {
@@ -82,7 +83,7 @@ useEffect(() => {
                     <i className="fa fa-check"></i>
                   </Link>
                 </div>
-                <div className="de_countdown">{Item.expiryDate}</div>
+                {Item.expiryDate && <CountdownTimer expiryDate={Item.expiryDate} />}
 
                 <div className="nft__item_wrap">
                   <div className="nft__item_extra">
