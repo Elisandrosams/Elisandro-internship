@@ -13314,6 +13314,38 @@ a.read_more i {
   margin-left: 10px;
   z-index: 10;
 }
+.skeleton {
+  display: flex;
+  align-items: center; 
+  gap: 15px;           
+}
+.skeleton .author_list_info {
+  padding-left: 0;
+}
+.skeleton_circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #dddbdd;
+  overflow: hidden;
+  position: relative;
+}
+.skeleton-line {
+  height: 14px;
+  border-radius: 4px;
+  margin-top: 8px;
+  background-color: #dddbdd;
+  position: relative;
+  display: flex;
+
+}
+.skeleton-line.short {
+  width: 60%;
+}
+
+.skeleton-line.tiny {
+  width: 40%;
+}
 
 .author_list_pp img {
   width: 100%;
@@ -13362,6 +13394,9 @@ a.read_more i {
 .author_list_info {
   font-weight: bold;
   padding-left: 70px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .rtl .author_list_info {
