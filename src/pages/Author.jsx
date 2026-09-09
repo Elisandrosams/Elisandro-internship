@@ -2,9 +2,22 @@ import React from "react";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
 import { Link } from "react-router-dom";
-import AuthorImage from "../images/author_thumbnail.jpg";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const Author = () => {
+  const [creator, setCreator] = useState([]);
+
+async function DynamicAuthors() {
+  const {data} = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=73855012");
+
+  setCreator(data);
+}
+
+useEffect(() => {
+  DynamicAuthors();
+}, []);
+
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
@@ -25,15 +38,15 @@ const Author = () => {
                 <div className="d_profile de-flex">
                   <div className="de-flex-col">
                     <div className="profile_avatar">
-                      <img src={AuthorImage} alt="" />
+                      <img src={creator.authorImage} alt="" />
 
                       <i className="fa fa-check"></i>
                       <div className="profile_name">
                         <h4>
-                          Monica Lucas
-                          <span className="profile_username">@monicaaaa</span>
+                          {creator.authorName}
+                          <span className="profile_username">{creator.tag}</span>
                           <span id="wallet" className="profile_wallet">
-                            UDHUHWudhwd78wdt7edb32uidbwyuidhg7wUHIFUHWewiqdj87dy7
+                            {creator.address}
                           </span>
                           <button id="btn_copy" title="Copy Text">
                             Copy
@@ -44,7 +57,7 @@ const Author = () => {
                   </div>
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
-                      <div className="profile_follower">573 followers</div>
+                      <div className="profile_follower">{creator.followers} followers</div>
                       <Link to="#" className="btn-main">
                         Follow
                       </Link>
