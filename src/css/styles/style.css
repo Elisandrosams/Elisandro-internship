@@ -16790,8 +16790,9 @@ img {
   }
 }
 .skeleton-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  display: block;
+  width: 100%;
+  height: auto;
   gap: 20px;
 }
 .skeleton-circle {
