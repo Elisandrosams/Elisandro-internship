@@ -16748,6 +16748,7 @@ img {
   position: relative;
   display: flex;
   justify-self: center;
+  overflow: hidden;
 }
 .skeleton-line.short {
   width: 60%;
@@ -16767,7 +16768,7 @@ img {
   background-color: #dddbdd;
 }
 
-.skeleton-box::after, .skeleton-circle::after, .skeleton-line.tiny::after {
+.skeleton-box::after, .skeleton-circle::after, .skeleton-line.tiny::after, .skeleton-line.short::after {
   position: absolute;
   top: 0;
   right: 0;

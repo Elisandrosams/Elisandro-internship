@@ -1,15 +1,31 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
+
 
 const AuthorItems = ({ nftCollection, ppimg }) => {
- const nftItems = nftCollection || [];
-  return (
+
+const dataLoaded = nftCollection && nftCollection.length > 0;
+
+  return !dataLoaded ? (
+    <div className="row">
+      {Array.from({ length: 8 }).map((_, i) => (
+        <div key={i} className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+          <div className="nft__item skeleton-grid">
+            <div className="author_list_pp skeleton-circle"></div>
+            <div className="nft__item_wrap skeleton-box"></div>
+            <div className="nft__item_info">
+              <div className="nft__item_info h4 skeleton-line short"></div>
+              <div className="nft__item_price skeleton-line tiny"></div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  ):(
     <div className="de_tab_content">
       <div className="tab-1">
         <div className="row">
-          {nftItems.map((nft, index) => (
+          {nftCollection.map((nft, index) => (
             <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
               <div className="nft__item">
                 <div className="author_list_pp">
