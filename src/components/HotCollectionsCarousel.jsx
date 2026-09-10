@@ -5,10 +5,13 @@ import { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import getSlidesToShow from "./UI/SlidesToShow";
 
 const HotCollectionsCarousel = () => {
   const [collections, setCollections] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [slidesToShow, setSlidesToShow] = useState(getSlidesToShow());
+
   async function DynamicHotCollections() {
     const { data } = await axios.get(
       "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections",
@@ -19,22 +22,17 @@ const HotCollectionsCarousel = () => {
   useEffect(() => {
     DynamicHotCollections();
   }, []);
+  useEffect(() => {
+    const handleResize = () => setSlidesToShow(getSlidesToShow());
+    window.addEventListener("resize", handleResize);
 
-  const SkeletonSlide = () => (
-    <div className="nft_coll">
-      <div className="nft_wrap skeleton-box"></div>
-      <div className="nft_coll_pp skeleton-circle"></div>
-      <div className="nft_coll_info">
-        <div className="skeleton-line short"></div>
-        <div className="skeleton-line tiny"></div>
-      </div>
-    </div>
-  );
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   var settings = {
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: slidesToShow,
     slidesToScroll: 1,
     arrows: true,
     responsive: [
@@ -64,8 +62,15 @@ const HotCollectionsCarousel = () => {
 
   return loading ? (
     <div className="skeleton-grid">
-      {Array.from({ length: 4 }).map((_, i) => (
-        <SkeletonSlide key={i} />
+      {Array.from({ length: slidesToShow }).map((_, i) => (
+        <div className="nft_coll">
+          <div className="nft_wrap skeleton-box"></div>
+          <div className="nft_coll_pp skeleton-circle"></div>
+          <div className="nft_coll_info">
+            <div className="skeleton-line short"></div>
+            <div className="skeleton-line tiny"></div>
+          </div>
+        </div>
       ))}
     </div>
   ) : (

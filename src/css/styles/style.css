@@ -16726,6 +16726,12 @@ img {
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 20px;
 }
+.skeleton-block {
+  display: block;
+  width: 100%;
+  height: auto;
+  gap: 20px;
+}
 .skeleton-circle {
   width: 50px;
   height: 50px;
@@ -16742,6 +16748,7 @@ img {
   position: relative;
   display: flex;
   justify-self: center;
+  overflow: hidden;
 }
 .skeleton-line.short {
   width: 60%;
@@ -16761,7 +16768,7 @@ img {
   background-color: #dddbdd;
 }
 
-.skeleton-box::after, .skeleton-circle::after, .skeleton-line.tiny::after {
+.skeleton-box::after, .skeleton-circle::after, .skeleton-line.tiny::after, .skeleton-line.short::after {
   position: absolute;
   top: 0;
   right: 0;
@@ -16789,35 +16796,7 @@ img {
     transform: translateX(100%);
   }
 }
-.skeleton-grid {
-  display: block;
-  width: 100%;
-  height: auto;
-  gap: 20px;
-}
-.skeleton-circle {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: #dddbdd;
-  overflow: hidden;
-  position: relative;
-}
-.skeleton-line {
-  height: 14px;
-  border-radius: 4px;
-  margin-top: 8px;
-  background-color: #dddbdd;
-  position: relative;
-  display: flex;
-}
-.skeleton-line.short {
-  width: 60%;
-}
 
-.skeleton-line.tiny {
-  width: 40%;
-}
 
 .nft-image {
   height: 100%;
