@@ -1,18 +1,36 @@
 import React from "react";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
 const Author = () => {
   const [creator, setCreator] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const {authorId} = useParams();
+  const [isFollowing, setIsFollowing] = useState(false);
 
 async function DynamicAuthors() {
-  const {data} = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=73855012");
+  const {data} = await axios.get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`);
 
   setCreator(data);
 }
+
+const toggleFollow = () => {
+  if (isFollowing) {
+    setCreator((prevCreator) => ({
+    ...prevCreator,
+    followers: prevCreator.followers - 1,
+  }));
+  setIsFollowing(false);
+} else {
+  setCreator((prevCreator) => ({
+    ...prevCreator,
+    followers: prevCreator.followers + 1,
+  }));
+  setIsFollowing(true);
+}}
 
 useEffect(() => {
   DynamicAuthors();
@@ -58,8 +76,8 @@ useEffect(() => {
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
                       <div className="profile_follower">{creator.followers} followers</div>
-                      <Link to="#" className="btn-main">
-                        Follow
+                      <Link to="#" className="btn-main" onClick={toggleFollow}>
+                        {isFollowing ? "Unfollow" : "Follow"}
                       </Link>
                     </div>
                   </div>
@@ -68,7 +86,7 @@ useEffect(() => {
 
               <div className="col-md-12">
                 <div className="de_tab tab_simple">
-                  <AuthorItems />
+                  <AuthorItems ppimg= {creator?.authorImage} nftCollection={creator?.nftCollection} />
                 </div>
               </div>
             </div>
