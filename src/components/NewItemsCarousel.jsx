@@ -44,7 +44,7 @@ const NewItemsCarousel = () => {
   return loading ? (
     <div className="skeleton-grid">
       {Array.from({ length: slidesToShow }).map((_, i) => (
-        <div className="nft__item">
+        <div className="nft__item" key={i}>
           <div className="author_list_pp skeleton-circle"></div>
           <div className="nft__item_wrap skeleton-box"></div>
           <div className="nft__item_info">
@@ -91,7 +91,7 @@ const NewItemsCarousel = () => {
                 </div>
               </div>
 
-              <Link to="/item-details">
+              <Link to={`/item-details/${Item.nftId}`}>
                 <img
                   src={Item.nftImage}
                   className="lazy nft__item_preview"

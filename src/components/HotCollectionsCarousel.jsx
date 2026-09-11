@@ -63,7 +63,7 @@ const HotCollectionsCarousel = () => {
   return loading ? (
     <div className="skeleton-grid">
       {Array.from({ length: slidesToShow }).map((_, i) => (
-        <div className="nft_coll">
+        <div className="nft_coll" key={i}>
           <div className="nft_wrap skeleton-box"></div>
           <div className="nft_coll_pp skeleton-circle"></div>
           <div className="nft_coll_info">
@@ -79,7 +79,7 @@ const HotCollectionsCarousel = () => {
         <div key={index}>
           <div className="nft_coll">
             <div className="nft_wrap">
-              <Link to="/item-details">
+              <Link to={`/item-details/${collection.nftId}`}>
                 <img
                   src={collection.nftImage}
                   className="lazy img-fluid"
