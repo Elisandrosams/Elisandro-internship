@@ -54,7 +54,7 @@ const ExploreItems = () => {
 
   return (
     <>
-      <div>
+      <div data-aos="fade-in" data-aos-delay="300">
         <select id="filter-items" defaultValue="" onChange={handleFilterChange}>
           <option value="">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
@@ -65,7 +65,7 @@ const ExploreItems = () => {
       {loading ? (
         <div className="row">
           {Array.from({ length: visibleItems }).map((_, i) => (
-            <div key={i} className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+            <div key={i} className="col-lg-3 col-md-6 col-sm-6 col-xs-12" >
               <div className="nft__item skeleton-grid">
                 <div className="author_list_pp skeleton-circle"></div>
                 <div className="nft__item_wrap skeleton-box"></div>
@@ -83,6 +83,7 @@ const ExploreItems = () => {
             key={index}
             className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
             style={{ display: "block", backgroundSize: "cover" }}
+            data-aos="fade-in"
           >
             <div className="nft__item">
               <div className="author_list_pp">
