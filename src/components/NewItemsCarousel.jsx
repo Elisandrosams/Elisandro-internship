@@ -57,7 +57,7 @@ const NewItemsCarousel = () => {
   ) : (
     <Slider {...settings}>
       {newItems.map((Item, index) => (
-        <div key={index}>
+        <div key={index} data-aos="fade-in">
           <div className="nft__item">
             <div className="author_list_pp">
               <Link
@@ -100,7 +100,7 @@ const NewItemsCarousel = () => {
               </Link>
             </div>
             <div className="nft__item_info">
-              <Link to="/item-details">
+              <Link to={`/item-details/${Item.nftId}`}>
                 <h4>{Item.title}</h4>
               </Link>
               <div className="nft__item_price">{Item.price} ETH</div>
