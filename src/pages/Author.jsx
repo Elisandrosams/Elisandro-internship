@@ -38,7 +38,7 @@ const Author = () => {
 
   useEffect(() => {
     DynamicAuthors();
-  }, []);
+  }, [DynamicAuthors]);
 
   return (
     <div id="wrapper">

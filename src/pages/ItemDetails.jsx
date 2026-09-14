@@ -19,7 +19,7 @@ const ItemDetails = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     dynamicdetails();
-  }, []);
+  }, [dynamicdetails]);
 
   return (
     <div id="wrapper">
