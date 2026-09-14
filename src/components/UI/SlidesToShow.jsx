@@ -1,4 +1,4 @@
-import React from 'react'
+
 
 const getSlidesToShow = () => {
   if (typeof window === "undefined") return 4;
